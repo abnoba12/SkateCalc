@@ -1,0 +1,7 @@
+.slider{
+    margin: 0 8px;
+}
+
+.progress-bar {
+    transition: width 2s;
+}
