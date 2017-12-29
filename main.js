@@ -1,5 +1,5 @@
 var stabilityMult = 100/18;
-var agilityMult = 100/18;
+var agilityMult = 100/14;
 var speedMult = 100/13;
 var accelerationMult = 100/8;
 
@@ -153,7 +153,7 @@ function skateBuilderVm() {
         var index = Vm.skateVm.agilityValues().findIndex(i => i.type === "plateKingPinAngle");
         if (index >= 0) {
             Vm.skateVm.agilityValues.splice(index, 1);
-            Vm.skateVm.agilityValues.push({ type:'plateKingPinAngle', value: convertToPoints(newValue, 10, 45, stabilityMult * major)});
+            Vm.skateVm.agilityValues.push({ type:'plateKingPinAngle', value: convertToPoints(newValue, 10, 45, agilityMult * major)});
         }
 
         //Speed
@@ -214,7 +214,7 @@ function skateBuilderVm() {
         var index = Vm.skateVm.agilityValues().findIndex(i => i.type === "plateCushionHardness");
         if (index >= 0) {
             Vm.skateVm.agilityValues.splice(index, 1);
-            Vm.skateVm.agilityValues.push({ type:'plateCushionHardness', value: convertToPoints(newValue, 100, 78, stabilityMult * med)});
+            Vm.skateVm.agilityValues.push({ type:'plateCushionHardness', value: convertToPoints(newValue, 100, 78, agilityMult * med)});
         }
     });
 
@@ -265,13 +265,6 @@ function skateBuilderVm() {
     });    
 
     self.wheelDurometer.subscribe(function (newValue) {
-        //Agility
-        var index = Vm.skateVm.agilityValues().findIndex(i => i.type === "wheelDurometer");
-        if (index >= 0) {
-            Vm.skateVm.agilityValues.splice(index, 1);
-            Vm.skateVm.agilityValues.push({ type:'wheelDurometer', value: convertToPoints(newValue, 103, 78, agilityMult * major)});
-        }
-
         //Stability
         var index = Vm.skateVm.stabilityValues().findIndex(i => i.type === "wheelDurometer");
         if (index >= 0) {

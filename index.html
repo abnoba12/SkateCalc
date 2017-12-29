@@ -20,18 +20,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h1>Skate Setup Calculator</h1>
+                <h1>Skate Calculator</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <p>With all the options out there finding the perfect skate setup can be a daunting task. Every part has it
                     advantages and disadvantages, but what do you choose? This calculator is to help you evaluate some of
-                    the skate setup combinations.
+                    the possible combinations for your equipment.
                 </p>
-                <p>One thing to keep in mind is that a good skate setup doesn’t make a good skater. At the end of the day a
-                    good skater will adapt to their setup and be able to perform on just about anything. It does help a skater
-                    to developer better and faster when using a setup that fits their needs.
+                <p>One thing to keep in mind is that a good skate setup won’t make you a good skater. At the end of the day a good skater will adapt to their equipment and be able to perform on just about anything, but having equipment tailored to your needs will help in developing your skills easier and faster.
                 </p>
             </div>
         </div>
@@ -107,10 +105,10 @@
                 <span data-bind="text: Vm.skateBuilderVm.bootTop"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootTopModal"></i>
                 <div>
-                    <input type="radio" name="bootTopGroup" value="High Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> High Top
+                    <input type="radio" name="bootTopGroup" value="Low Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> Low Top
                 </div>
                 <div>
-                    <input type="radio" name="bootTopGroup" value="Low Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> Low Top
+                    <input type="radio" name="bootTopGroup" value="High Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> High Top
                 </div>
             </div>
             <div class=" col-sm-2">
@@ -118,10 +116,10 @@
                 <span data-bind="text: Vm.skateBuilderVm.bootHeel"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootHeelModal"></i>
                 <div>
-                    <input type="radio" name="bootHeelGroup" value="Raised Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Raised Heel
+                    <input type="radio" name="bootHeelGroup" value="Flat Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Flat Heel
                 </div>
                 <div>
-                    <input type="radio" name="bootHeelGroup" value="Flat Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Flat Heel
+                    <input type="radio" name="bootHeelGroup" value="Raised Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Raised Heel
                 </div>
             </div>
         </div>
@@ -148,11 +146,11 @@
                 <span data-bind="text: Vm.skateBuilderVm.plateMounting"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateMountingModal"></i>
                 <div>
-                    <input type="radio" name="plateMountingGroup" value="Standard" data-bind="checked: Vm.skateBuilderVm.plateMounting" /> Standard
-                </div>
-                <div>
                     <input type="radio" name="plateMountingGroup" value="Short Forward" data-bind="checked: Vm.skateBuilderVm.plateMounting"
                     /> Short Forward
+                </div>
+                <div>
+                    <input type="radio" name="plateMountingGroup" value="Standard" data-bind="checked: Vm.skateBuilderVm.plateMounting" /> Standard
                 </div>
             </div>
             <div class=" col-sm-3">
@@ -220,19 +218,21 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Minor
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Stability, Agility
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Stability: Minor</li>
+                            <li>Agility: Minor</li>
+                        </ul>
                     </p>
                     <hr />
                     <p>
                         <strong>Low Top:</strong> (+Agility) Low top boots are generally considered speed boots. They are more
-                        popular and allow a higher range of ankle mobility, and it will also not be as hot on your foot.</p>
+                        popular and allow a higher range of ankle mobility, and it will also not be as hot on your foot.
+                    </p>
                     <p>
                         <strong>High Top:</strong> (+Stability) High tops generally offer more ankle support that adds to skater stability,
-                        so if you have weaker ankles; high tops would be a good choice.</p>
+                        so if you have weaker ankles; high tops would be a good choice.
+                    </p>
                 </div>
             </div>
         </div>
@@ -249,13 +249,23 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Medium
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Acceleration, Agility, Speed
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Acceleration: Medium</li>
+                            <li>Agility: Medium</li>
+                            <li>Speed: Medium</li>
+                        </ul>
                     </p>
                     <hr />
+                    <p>
+                        <strong>Flat Heel:</strong> (+Acceleration, +Speed) A flat or low heel offers the ability to lean over without forcing the
+                        plates onto an edge. Lower heels allows a more even weight distribution on the front and back of
+                        the plate, especially when the skater is low and leaned over. This allows the weels to stay in contact
+                        with the floor longer and the longer the wheels stay in contact with the floor, the more power the
+                        skater can put down, and faster they will go. The tradeoff with low heel speed boots is the loss
+                        of agility. The edges are controlled more by the ball of the foot and lower part of the ankle rather
+                        than the ankle and lower shin.
+                    </p>
                     <p>
                         <strong>Raised Heel:</strong> (+Agility) Large heels help put more weight toward the front of the plate.
                         This helps with agility and control. Also, with most art boots, there is additional ankle / lower
@@ -265,15 +275,7 @@
                         from edging too hard, the skater has to keep their legs upright and without much bend. This causes
                         the stick-up-the-butt form that figure skaters have when they are trying to get up speed. It is an
                         awkward skating position, it requires lots of skill and muscle to get any speed. The steps end up
-                        choppy and robot like.</p>
-                    <p>
-                        <strong>Flat Heel:</strong> (+Acceleration, +Speed) A flat or low heel offers the ability to lean over without forcing the
-                        plates onto an edge. Lower heels allows a more even weight distribution on the front and back of
-                        the plate, especially when the skater is low and leaned over. This allows the weels to stay in contact
-                        with the floor longer and the longer the wheels stay in contact with the floor, the more power the
-                        skater can put down, and faster they will go. The tradeoff with low heel speed boots is the loss
-                        of agility. The edges are controlled more by the ball of the foot and lower part of the ankle rather
-                        than the ankle and lower shin.
+                        choppy and robot like.
                     </p>
                 </div>
             </div>
@@ -291,11 +293,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Major
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Stability, Agility, Speed
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Agility: Major</li>
+                            <li>Speed: Major</li>
+                            <li>Stability: Major</li>
+                        </ul>
                     </p>
                     <hr />
                     <p>
@@ -326,11 +329,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Major
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Stability, Agility, Acceleration
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Acceleration: Major</li>
+                            <li>Agility: Major</li>
+                            <li>Stability: Major</li>
+                        </ul>
                     </p>
                     <hr />
                     <p>
@@ -363,22 +367,22 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Medium
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Stability, Agility
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Agility: Medium</li>
+                            <li>Stability: Medium</li>
+                        </ul>                        
                     </p>
                     <hr />
+                    <p>
+                        <strong>Soft (78A):</strong> (+Agility) The opposite can be said about softer cushions. This grants the trucks
+                        a greater ability to flex around the king pin. This makes for sharper edging and increased agility.
+                    </p>
                     <p>
                         <strong>Hard (100A):</strong> (+Stability) Harder cushions tend to be used to compensate for other aspects
                         of a skaters setup. Cushions are a cheap way to make a 45&#176; plate less responsive while the skater
                         builds the skills to contoll it. In general harder cushions reduce the ability for the trucks to
                         flex, reducing agility and increasing stability.
-                    </p>
-                    <p>
-                        <strong>Soft (78A):</strong> (+Agility) The opposite can be said about softer cushions. This grants the trucks
-                        a greater ability to flex around the king pin. This makes for sharper edging and increased agility.
                     </p>
                 </div>
             </div>
@@ -396,11 +400,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Medium
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Acceleration, Speed, Stability
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Acceleration: Medium</li>
+                            <li>Speed: Medium</li>
+                            <li>Stability: Medium</li>
+                        </ul>
                     </p>
                     <hr />
                     <p>
@@ -436,11 +441,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Minor
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Agility, Speed, Stability
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Agility: Minor</li>
+                            <li>Speed: Minor</li>
+                            <li>Stability: Minor</li>
+                        </ul>
                     </p>
                     <hr />
                     <p>
@@ -470,11 +476,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Skate Setup Impact:</strong>
-                        Major
-                    </p>
-                    <p>
-                        <strong>Affects:</strong> Agility, Speed, Stability
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Speed: Major</li>
+                            <li>Stability: Major</li>
+                        </ul>
+                        
                     </p>
                     <hr />
                     <p>
