@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Roller Skate Calculator</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
+    <!-- CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        crossorigin="anonymous">		
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
     <link rel="stylesheet" href="./index.css">
 </head>
 
@@ -41,11 +41,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-1 offset-sm-1">
-                <p>Poor</p>
+            <div class="col-sm-1 col-sm-offset-1">
+                <p><strong>Poor</strong></p>
             </div>
-            <div class="col-sm-1  offset-sm-8 text-right">
-                <p>Great</p>
+            <div class="col-sm-1  col-sm-offset-8 text-right">
+                <p><strong>Great</strong></p>
             </div>
         </div>
         <div class="row">
@@ -54,7 +54,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateVm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.skateAttributesVm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateVm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                    <div data-bind="style: { width: Vm.skateAttributesVm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
                         aria-valuemax="100"></div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateVm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                    <div data-bind="style: { width: Vm.skateAttributesVm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
                         aria-valuemax="100"></div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateVm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.skateAttributesVm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
         </div>
         <div class="row">
             <div class=" col-sm-2">
-                Boot Top:
+                <strong>Boot Top:</strong>
                 <span data-bind="text: Vm.skateBuilderVm.bootTop"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootTopModal"></i>
                 <div>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class=" col-sm-2">
-                Boot Heel:
+                <strong>Boot Heel:</strong>
                 <span data-bind="text: Vm.skateBuilderVm.bootHeel"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootHeelModal"></i>
                 <div>
@@ -132,7 +132,7 @@
         </div>
         <div class="row">
             <div class=" col-sm-3">
-                <p>King Pin Angle:
+                <p><strong>King Pin Angle:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.plateKingPinAngle()+'&#176;'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
                 </p>
@@ -142,7 +142,7 @@
                 <span> 45&#176;</span>
             </div>
             <div class=" col-sm-2">
-                Mounting:
+                <strong>Mounting:</strong>
                 <span data-bind="text: Vm.skateBuilderVm.plateMounting"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateMountingModal"></i>
                 <div>
@@ -154,7 +154,7 @@
                 </div>
             </div>
             <div class=" col-sm-3">
-                <p>Cushion Hardness:
+                <p><strong>Cushion Hardness:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.plateCushionHardness()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateCushionHardnessModal"></i>
                 </p>
@@ -173,7 +173,7 @@
         </div>
         <div class="row">
             <div class=" col-sm-3">
-                <p>Diameter:
+                <p><strong>Diameter:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelDiameter()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDiameterModal"></i>
                 </p>
@@ -183,7 +183,7 @@
                 <span> 70mm</span>
             </div>
             <div class=" col-sm-3">
-                <p>Width:
+                <p><strong>Width:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelWidth()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelWidthModal"></i>
                 </p>
@@ -193,7 +193,7 @@
                 <span> 44mm</span>
             </div>
             <div class=" col-sm-3">
-                <p>Durometer:
+                <p><strong>Durometer:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelDurometer()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDurometerModal"></i>
                 </p>
@@ -511,8 +511,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js'></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js'></script>
     <script src="./main.js"></script>

@@ -2,6 +2,11 @@
     margin: 0 8px;
 }
 
+[data-toggle="modal"]{
+	cursor: pointer;
+    padding-left: 8px;
+}
+
 .progress-bar {
     transition: width 2s;
 }
