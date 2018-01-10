@@ -8,11 +8,13 @@
     <title>Roller Skate Calculator</title>
 
     <!-- CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css"
-        crossorigin="anonymous">		
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./index.css">
 </head>
 
@@ -25,11 +27,11 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <p>With all the options out there finding the perfect skate setup can be a daunting task. Every part has it
-                    advantages and disadvantages, but what do you choose? This calculator is to help you evaluate some of
-                    the possible combinations for your equipment.
+                <p>
+                    Good skates don't make a good skater, but good equipment sure does help you get there.
                 </p>
-                <p>One thing to keep in mind is that a good skate setup won’t make you a good skater. At the end of the day a good skater will adapt to their equipment and be able to perform on just about anything, but having equipment tailored to your needs will help in developing your skills easier and faster.
+                <p>
+                    *Assumptions: Wood indoor rink, medium floor stickyness.
                 </p>
             </div>
         </div>
@@ -42,10 +44,14 @@
         </div>
         <div class="row">
             <div class="col-sm-1 col-sm-offset-1">
-                <p><strong>Poor</strong></p>
+                <p>
+                    <strong>Poor</strong>
+                </p>
             </div>
             <div class="col-sm-1  col-sm-offset-8 text-right">
-                <p><strong>Great</strong></p>
+                <p>
+                    <strong>Great</strong>
+                </p>
             </div>
         </div>
         <div class="row">
@@ -65,8 +71,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                        aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.skateAttributesVm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -76,8 +82,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                        aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.skateAttributesVm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -95,9 +101,12 @@
         <hr />
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <h1>Skate Boots</h1>
             </div>
+            <!-- <div class="col-sm-6">
+                <h1>Skater Weight</h1>
+            </div> -->
         </div>
         <div class="row">
             <div class=" col-sm-2">
@@ -122,6 +131,17 @@
                     <input type="radio" name="bootHeelGroup" value="Raised Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Raised Heel
                 </div>
             </div>
+            <!-- <div class="col-sm-3 col-sm-offset-2">
+                <p>
+                    <strong>Skater Weight:</strong>
+                    <span data-bind="text: Vm.skateBuilderVm.skaterWeight()"></span>
+                    <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
+                </p>
+                <span>Light </span>
+                <input id="skaterWeight" type="text" data-bind="textInput: Vm.skateBuilderVm.skaterWeightVal" data-slider-value="0" data-slider-ticks="[0, 1, 2, 3, 4]"
+                    data-slider-min="0" data-slider-max="5" data-slider-step="1" />
+                <span> Heavy</span>
+            </div> -->
         </div>
         <hr />
 
@@ -132,7 +152,8 @@
         </div>
         <div class="row">
             <div class=" col-sm-3">
-                <p><strong>King Pin Angle:</strong>
+                <p>
+                    <strong>King Pin Angle:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.plateKingPinAngle()+'&#176;'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
                 </p>
@@ -154,14 +175,15 @@
                 </div>
             </div>
             <div class=" col-sm-3">
-                <p><strong>Cushion Hardness:</strong>
+                <p>
+                    <strong>Cushion Hardness:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.plateCushionHardness()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateCushionHardnessModal"></i>
                 </p>
                 <span>Soft (78A) </span>
                 <input id="cushion-hardness" data-bind="textInput: Vm.skateBuilderVm.plateCushionHardness" data-slider-id='cushion-hardnessSlider'
-                    type="text" data-slider-min="78" data-slider-max="100" data-slider-step="1" />
-                <span> Hard(100A)</span>
+                    type="text" data-slider-min="78" data-slider-max="103" data-slider-step="1" />
+                <span> Hard(103A)</span>
             </div>
         </div>
         <hr />
@@ -173,17 +195,19 @@
         </div>
         <div class="row">
             <div class=" col-sm-3">
-                <p><strong>Diameter:</strong>
+                <p>
+                    <strong>Diameter:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelDiameter()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDiameterModal"></i>
                 </p>
                 <span>45mm </span>
                 <input id="wheelDiameter" data-bind="textInput: Vm.skateBuilderVm.wheelDiameter" data-slider-id='wheelDiameterSlider' type="text"
-                    data-slider-min="45" data-slider-max="70" data-slider-step="1" />
+                    data-slider-min="35" data-slider-max="70" data-slider-step="1" />
                 <span> 70mm</span>
             </div>
             <div class=" col-sm-3">
-                <p><strong>Width:</strong>
+                <p>
+                    <strong>Width:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelWidth()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelWidthModal"></i>
                 </p>
@@ -193,7 +217,8 @@
                 <span> 44mm</span>
             </div>
             <div class=" col-sm-3">
-                <p><strong>Durometer:</strong>
+                <p>
+                    <strong>Durometer:</strong>
                     <span data-bind="text: Vm.skateBuilderVm.wheelDurometer()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDurometerModal"></i>
                 </p>
@@ -226,12 +251,12 @@
                     </p>
                     <hr />
                     <p>
-                        <strong>Low Top:</strong> (+Agility) Low top boots are generally considered speed boots. They are more
-                        popular and allow a higher range of ankle mobility, and it will also not be as hot on your foot.
+                        <strong>Low Top:</strong> (+Agility) Low top boots are generally considered speed boots. They are more popular
+                        and allow a higher range of ankle mobility, and it will also not be as hot on your foot.
                     </p>
                     <p>
-                        <strong>High Top:</strong> (+Stability) High tops generally offer more ankle support that adds to skater stability,
-                        so if you have weaker ankles; high tops would be a good choice.
+                        <strong>High Top:</strong> (+Stability) High tops generally offer more ankle support that adds to skater
+                        stability, so if you have weaker ankles; high tops would be a good choice.
                     </p>
                 </div>
             </div>
@@ -258,13 +283,13 @@
                     </p>
                     <hr />
                     <p>
-                        <strong>Flat Heel:</strong> (+Acceleration, +Speed) A flat or low heel offers the ability to lean over without forcing the
-                        plates onto an edge. Lower heels allows a more even weight distribution on the front and back of
-                        the plate, especially when the skater is low and leaned over. This allows the weels to stay in contact
-                        with the floor longer and the longer the wheels stay in contact with the floor, the more power the
-                        skater can put down, and faster they will go. The tradeoff with low heel speed boots is the loss
-                        of agility. The edges are controlled more by the ball of the foot and lower part of the ankle rather
-                        than the ankle and lower shin.
+                        <strong>Flat Heel:</strong> (+Acceleration, +Speed) A flat or low heel offers the ability to lean over without
+                        forcing the plates onto an edge. Lower heels allows a more even weight distribution on the front
+                        and back of the plate, especially when the skater is low and leaned over. This allows the weels to
+                        stay in contact with the floor longer and the longer the wheels stay in contact with the floor, the
+                        more power the skater can put down, and faster they will go. The tradeoff with low heel speed boots
+                        is the loss of agility. The edges are controlled more by the ball of the foot and lower part of the
+                        ankle rather than the ankle and lower shin.
                     </p>
                     <p>
                         <strong>Raised Heel:</strong> (+Agility) Large heels help put more weight toward the front of the plate.
@@ -371,7 +396,7 @@
                         <ul>
                             <li>Agility: Medium</li>
                             <li>Stability: Medium</li>
-                        </ul>                        
+                        </ul>
                     </p>
                     <hr />
                     <p>
@@ -481,7 +506,7 @@
                             <li>Speed: Major</li>
                             <li>Stability: Major</li>
                         </ul>
-                        
+
                     </p>
                     <hr />
                     <p>
@@ -511,7 +536,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js'></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js'></script>
     <script src="./main.js"></script>
