@@ -60,7 +60,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.skateAttributesVm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
+                    <div data-bind="style: { width: Vm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
@@ -104,44 +104,44 @@
             <div class="col-sm-6">
                 <h1>Skate Boots</h1>
             </div>
-            <!-- <div class="col-sm-6">
+            <div class="col-sm-6">
                 <h1>Skater Weight</h1>
-            </div> -->
+            </div>
         </div>
         <div class="row">
             <div class=" col-sm-2">
                 <strong>Boot Top:</strong>
-                <span data-bind="text: Vm.skateBuilderVm.bootTop"></span>
+                <span data-bind="text: Vm.bootTop"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootTopModal"></i>
                 <div>
-                    <input type="radio" name="bootTopGroup" value="Low Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> Low Top
+                    <input type="radio" name="bootTopGroup" value="Low Top" data-bind="checked: Vm.bootTop" /> Low Top
                 </div>
                 <div>
-                    <input type="radio" name="bootTopGroup" value="High Top" data-bind="checked: Vm.skateBuilderVm.bootTop" /> High Top
+                    <input type="radio" name="bootTopGroup" value="High Top" data-bind="checked: Vm.bootTop" /> High Top
                 </div>
             </div>
             <div class=" col-sm-2">
                 <strong>Boot Heel:</strong>
-                <span data-bind="text: Vm.skateBuilderVm.bootHeel"></span>
+                <span data-bind="text: Vm.bootHeel"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#bootHeelModal"></i>
                 <div>
-                    <input type="radio" name="bootHeelGroup" value="Flat Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Flat Heel
+                    <input type="radio" name="bootHeelGroup" value="Flat Heel" data-bind="checked: Vm.bootHeel" /> Flat Heel
                 </div>
                 <div>
-                    <input type="radio" name="bootHeelGroup" value="Raised Heel" data-bind="checked: Vm.skateBuilderVm.bootHeel" /> Raised Heel
+                    <input type="radio" name="bootHeelGroup" value="Raised Heel" data-bind="checked: Vm.bootHeel" /> Raised Heel
                 </div>
             </div>
-            <!-- <div class="col-sm-3 col-sm-offset-2">
+            <div class="col-sm-3 col-sm-offset-2">
                 <p>
                     <strong>Skater Weight:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.skaterWeight()"></span>
+                    <span data-bind="text: Vm.skaterWeight()"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
                 </p>
                 <span>Light </span>
-                <input id="skaterWeight" type="text" data-bind="textInput: Vm.skateBuilderVm.skaterWeightVal" data-slider-value="0" data-slider-ticks="[0, 1, 2, 3, 4]"
+                <input id="skaterWeight" type="text" data-bind="textInput: Vm.skaterWeightVal" data-slider-value="0" data-slider-ticks="[0, 1, 2, 3, 4]"
                     data-slider-min="0" data-slider-max="5" data-slider-step="1" />
                 <span> Heavy</span>
-            </div> -->
+            </div>
         </div>
         <hr />
 
@@ -154,34 +154,34 @@
             <div class=" col-sm-3">
                 <p>
                     <strong>King Pin Angle:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.plateKingPinAngle()+'&#176;'"></span>
+                    <span data-bind="text: Vm.plateKingPinAngle()+'&#176;'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
                 </p>
                 <span>10&#176; </span>
-                <input id="kingpin" data-bind="textInput: Vm.skateBuilderVm.plateKingPinAngle" data-slider-id='kingpinSlider' type="text"
+                <input id="kingpin" data-bind="textInput: Vm.plateKingPinAngle" data-slider-id='kingpinSlider' type="text"
                     data-slider-min="10" data-slider-max="45" data-slider-step="1" />
                 <span> 45&#176;</span>
             </div>
             <div class=" col-sm-2">
                 <strong>Mounting:</strong>
-                <span data-bind="text: Vm.skateBuilderVm.plateMounting"></span>
+                <span data-bind="text: Vm.plateMounting"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateMountingModal"></i>
                 <div>
-                    <input type="radio" name="plateMountingGroup" value="Short Forward" data-bind="checked: Vm.skateBuilderVm.plateMounting"
+                    <input type="radio" name="plateMountingGroup" value="Short Forward" data-bind="checked: Vm.plateMounting"
                     /> Short Forward
                 </div>
                 <div>
-                    <input type="radio" name="plateMountingGroup" value="Standard" data-bind="checked: Vm.skateBuilderVm.plateMounting" /> Standard
+                    <input type="radio" name="plateMountingGroup" value="Standard" data-bind="checked: Vm.plateMounting" /> Standard
                 </div>
             </div>
             <div class=" col-sm-3">
                 <p>
                     <strong>Cushion Hardness:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.plateCushionHardness()+'A'"></span>
+                    <span data-bind="text: Vm.plateCushionHardness()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateCushionHardnessModal"></i>
                 </p>
                 <span>Soft (78A) </span>
-                <input id="cushion-hardness" data-bind="textInput: Vm.skateBuilderVm.plateCushionHardness" data-slider-id='cushion-hardnessSlider'
+                <input id="cushion-hardness" data-bind="textInput: Vm.plateCushionHardness" data-slider-id='cushion-hardnessSlider'
                     type="text" data-slider-min="78" data-slider-max="103" data-slider-step="1" />
                 <span> Hard(103A)</span>
             </div>
@@ -197,33 +197,33 @@
             <div class=" col-sm-3">
                 <p>
                     <strong>Diameter:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.wheelDiameter()+'mm'"></span>
+                    <span data-bind="text: Vm.wheelDiameter()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDiameterModal"></i>
                 </p>
                 <span>45mm </span>
-                <input id="wheelDiameter" data-bind="textInput: Vm.skateBuilderVm.wheelDiameter" data-slider-id='wheelDiameterSlider' type="text"
+                <input id="wheelDiameter" data-bind="textInput: Vm.wheelDiameter" data-slider-id='wheelDiameterSlider' type="text"
                     data-slider-min="35" data-slider-max="70" data-slider-step="1" />
                 <span> 70mm</span>
             </div>
             <div class=" col-sm-3">
                 <p>
                     <strong>Width:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.wheelWidth()+'mm'"></span>
+                    <span data-bind="text: Vm.wheelWidth()+'mm'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelWidthModal"></i>
                 </p>
                 <span>31mm </span>
-                <input id="wheelWidth" data-bind="textInput: Vm.skateBuilderVm.wheelWidth" data-slider-id='wheelWidthSlider' type="text"
+                <input id="wheelWidth" data-bind="textInput: Vm.wheelWidth" data-slider-id='wheelWidthSlider' type="text"
                     data-slider-min="31" data-slider-max="44" data-slider-step="1" />
                 <span> 44mm</span>
             </div>
             <div class=" col-sm-3">
                 <p>
                     <strong>Durometer:</strong>
-                    <span data-bind="text: Vm.skateBuilderVm.wheelDurometer()+'A'"></span>
+                    <span data-bind="text: Vm.wheelDurometer()+'A'"></span>
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDurometerModal"></i>
                 </p>
                 <span>Soft (78A) </span>
-                <input id="wheelDurometer" data-bind="textInput: Vm.skateBuilderVm.wheelDurometer" data-slider-id='wheelDurometerSlider'
+                <input id="wheelDurometer" data-bind="textInput: Vm.wheelDurometer" data-slider-id='wheelDurometerSlider'
                     type="text" data-slider-min="78" data-slider-max="103" data-slider-step="1" />
                 <span> Hard(103A)</span>
             </div>

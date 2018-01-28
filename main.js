@@ -1,16 +1,52 @@
-//Save and manage each attribute
-function skateAttributesVm() {
+//root VM
+function Vm() {
     var self = this;
 
-    self.stability = ko.observable(0);
-    self.stabilityValues = ko.observableArray(initializeValues());
-    self.agility = ko.observable(0);
-    self.agilityValues = ko.observableArray(initializeValues());
-    self.speed = ko.observable(0);
-    self.speedValues = ko.observableArray(initializeValues());
-    self.acceleration = ko.observable(0);
-    self.accelerationValues = ko.observableArray(initializeValues());
+    var self = this;
 
+    //Impact
+    self.minor = ko.observable(1);
+    self.med = ko.observable(2);
+    self.major = ko.observable(4);
+
+    //Percentage
+    self.stability = ko.observable(0);
+    self.agility = ko.observable(0);
+    self.speed = ko.observable(0);
+    self.acceleration = ko.observable(0);
+
+    //Configuration
+    self.stabilityValues = ko.observableArray([
+        { type: 'bootTop', impact: self.minor() },
+        { type: 'plateKingPinAngle', impact: self.major() },
+        { type: 'plateMounting', impact: self.major() },
+        { type: 'plateCushionHardness', impact: self.med() },
+        { type: 'wheelDiameter', impact: self.med() },
+        { type: 'wheelWidth', impact: self.major() },
+        { type: 'wheelDurometer', impact: self.major() }
+    ]);
+    self.agilityValues = ko.observableArray([
+        { type: 'bootTop', impact: self.minor() },
+        { type: 'bootHeel', impact: self.med() },
+        { type: 'plateKingPinAngle', impact: self.major() },
+        { type: 'plateMounting', impact: self.major() },
+        { type: 'plateCushionHardness', impact: self.med() },
+        { type: 'wheelWidth', impact: self.minor() }
+    ]);
+    self.speedValues = ko.observableArray([
+        { type: 'bootHeel', impact: self.med() },
+        { type: 'plateKingPinAngle', impact: self.major() },
+        { type: 'wheelDiameter', impact: self.med() },
+        { type: 'wheelWidth', impact: self.minor() },
+        { type: 'wheelDurometer', impact: self.major() },
+    ]);
+    self.accelerationValues = ko.observableArray([
+        { type: 'bootHeel', impact: self.med() },
+        { type: 'plateMounting', impact: self.major() },
+        { type: 'wheelDiameter', impact: self.med() },
+    ]);
+
+    //Calculates percentages
     self.stabilityValues.subscribe(function (newValue) {
         var sum = 0;
         self.stabilityValues().forEach(function (element) {
@@ -54,93 +90,125 @@ function skateAttributesVm() {
         self.acceleration(Math.floor(sum));
         console.debug("acceleration: " + sum);
     });
-};
 
-//Save and manage each skate component
-function skateBuilderVm() {
-    var self = this;
-
-    //Impact
-    self.minor = ko.observable(1);
-    self.med = ko.observable(2);
-    self.major = ko.observable(4);
-
-    //TODO: Make this dynamic
     //Multpliers
-    self.stabilityMult = ko.observable(100 / 18);
-    self.agilityMult = ko.observable(100 / 14);
-    self.speedMult = ko.observable(100 / 13);
-    self.accelerationMult = ko.observable(100 / 8);    
+    self.stabilityMult = ko.observable();
+    self.agilityMult = ko.observable();
+    self.speedMult = ko.observable();
+    self.accelerationMult = ko.observable();
 
     //Setup components
     self.bootTop = ko.observable();
     self.bootHeel = ko.observable();
-    self.skaterWeightVal = ko.observable(0).extend({ rateLimit: 500 });
-    self.skaterWeight = ko.pureComputed(function(){return weightEnum[self.skaterWeightVal()];}); //Converts number into text
-    self.plateKingPinAngle = ko.observable(10).extend({ rateLimit: 500 });
+    self.skaterWeightVal = ko.observable(0);
+    self.skaterWeight = ko.pureComputed(function () { return weightEnum[self.skaterWeightVal()]; }); //Converts number into text
+    self.plateKingPinAngle = ko.observable(10);
     self.plateMounting = ko.observable();
-    self.plateCushionHardness = ko.observable(78).extend({ rateLimit: 500 });
-    self.wheelDiameter = ko.observable(35).extend({ rateLimit: 500 });
-    self.wheelWidth = ko.observable(31).extend({ rateLimit: 500 });
-    self.wheelDurometer = ko.observable(78).extend({ rateLimit: 500 });
+    self.plateCushionHardness = ko.observable(78);
+    self.wheelDiameter = ko.observable(35);
+    self.wheelWidth = ko.observable(31);
+    self.wheelDurometer = ko.observable(78);
     self.wheelBearings = ko.observable();
 
-    self.bootTop.subscribe(function (newValue) {
-        updateEvaluation('bootTop', Vm.skateAttributesVm.stabilityValues, self.stabilityMult() * self.minor(), newValue, 'High Top'); 	//Stability
-        updateEvaluation('bootTop', Vm.skateAttributesVm.agilityValues, self.agilityMult() * self.minor(), newValue, 'Low Top'); 		    //Agility
+    //Observers that update everything when it's value changes
+    self.bootTop.subscribe(function () {
+        updateEvaluation('bootTop', self.stabilityValues, self.stabilityMult(), self.bootTop(), 'High Top'); 	//Stability
+        updateEvaluation('bootTop', self.agilityValues, self.agilityMult(), self.bootTop(), 'Low Top'); 		    //Agility
     });
 
-    self.bootHeel.subscribe(function (newValue) {
-        updateEvaluation('bootHeel', Vm.skateAttributesVm.agilityValues, self.agilityMult() * self.med(), newValue, 'Raised Heel'); 			//Agility
-        updateEvaluation('bootHeel', Vm.skateAttributesVm.speedValues, self.speedMult() * self.med(), newValue, 'Flat Heel'); 				//Speed
-        updateEvaluation('bootHeel', Vm.skateAttributesVm.accelerationValues, self.accelerationMult() * self.med(), newValue, 'Flat Heel'); 	//Acceleration
+    self.bootHeel.subscribe(function () {
+        updateEvaluation('bootHeel', self.agilityValues, self.agilityMult(), self.bootHeel(), 'Raised Heel'); 			//Agility
+        updateEvaluation('bootHeel', self.speedValues, self.speedMult(), self.bootHeel(), 'Flat Heel'); 				//Speed
+        updateEvaluation('bootHeel', self.accelerationValues, self.accelerationMult(), self.bootHeel(), 'Flat Heel'); 	//Acceleration
     });
 
-    self.skaterWeightVal.subscribe(function (newValue) {
+    self.skaterWeightVal.subscribe(function () {
+        var agilityCushion = self.agilityValues().find(i => i.type === 'plateCushionHardness');
+        var stabilityCushion = self.stabilityValues().find(i => i.type === 'plateCushionHardness');
+        var speedWheelDur = self.speedValues().find(i => i.type === 'wheelDurometer');
+        var stabilityWheelDur = self.stabilityValues().find(i => i.type === 'wheelDurometer');
 
+        //Everything is based on the origional impact values
+        agilityCushion.origImpact = agilityCushion.origImpact ? agilityCushion.origImpact : agilityCushion.impact;
+        stabilityCushion.origImpact = stabilityCushion.origImpact ? stabilityCushion.origImpact : stabilityCushion.impact;
+        speedWheelDur.origImpact = speedWheelDur.origImpact ? speedWheelDur.origImpact : speedWheelDur.impact;
+        stabilityWheelDur.origImpact = stabilityWheelDur.origImpact ? stabilityWheelDur.origImpact : stabilityWheelDur.impact;
+
+        switch (self.skaterWeightVal()) {
+            case '0':
+                agilityCushion.impact = agilityCushion.origImpact;
+                stabilityCushion.impact = stabilityCushion.origImpact + 4;
+                speedWheelDur.impact = speedWheelDur.origImpact + 4;
+                break;
+            case '1':
+                agilityCushion.impact = agilityCushion.origImpact + 1;
+                stabilityCushion.impact = stabilityCushion.origImpact + 3;                
+                speedWheelDur.impact = speedWheelDur.origImpact + 3;
+                break;
+            case '2':
+                agilityCushion.impact = agilityCushion.origImpact + 2;
+                stabilityCushion.impact = stabilityCushion.origImpact + 2;
+                speedWheelDur.impact = speedWheelDur.origImpact + 2;
+                break;
+            case '3':
+                agilityCushion.impact = agilityCushion.origImpact + 3;
+                stabilityCushion.impact = stabilityCushion.origImpact + 1;
+                speedWheelDur.impact = speedWheelDur.origImpact + 1;
+                break;
+            case '4':
+                agilityCushion.impact = agilityCushion.origImpact + 4;
+                stabilityCushion.impact = stabilityCushion.origImpact;
+                speedWheelDur.impact = speedWheelDur.origImpact;
+                break;
+        }
+
+        updateAllMultpliers(self);
+        updateAllValues(self);
     });
 
-    self.plateKingPinAngle.subscribe(function (newValue) {
-        updateEvaluation('plateKingPinAngle', Vm.skateAttributesVm.stabilityValues, convertToPoints(newValue, 45, 10, self.stabilityMult() * self.major()), newValue); 	//Stability        	
-        updateEvaluation('plateKingPinAngle', Vm.skateAttributesVm.agilityValues, convertToPoints(newValue, 10, 45, self.agilityMult() * self.major()), newValue); 		//Agility
-        updateEvaluation('plateKingPinAngle', Vm.skateAttributesVm.speedValues, convertToPoints(newValue, 45, 10, self.speedMult() * self.major()), newValue); 			//Speed
+    self.plateKingPinAngle.subscribe(function () {
+        var max = 45;
+        var min = 10;
+        updateEvaluation('plateKingPinAngle', self.stabilityValues, convertToPoints(self.plateKingPinAngle(), max, min, self.stabilityMult()), self.plateKingPinAngle()); 	//Stability        	
+        updateEvaluation('plateKingPinAngle', self.agilityValues, convertToPoints(self.plateKingPinAngle(), min, max, self.agilityMult()), self.plateKingPinAngle()); 		//Agility
+        updateEvaluation('plateKingPinAngle', self.speedValues, convertToPoints(self.plateKingPinAngle(), max, min, self.speedMult()), self.plateKingPinAngle()); 			//Speed
     });
 
-    self.plateMounting.subscribe(function (newValue) {
-        updateEvaluation('plateMounting', Vm.skateAttributesVm.stabilityValues, self.stabilityMult() * self.major(), newValue, 'Standard'); 		//Stability
-        updateEvaluation('plateMounting', Vm.skateAttributesVm.accelerationValues, self.accelerationMult() * self.major(), newValue, 'Standard'); //Acceleration
-        updateEvaluation('plateMounting', Vm.skateAttributesVm.agilityValues, self.agilityMult() * self.major(), newValue, 'Short Forward'); 		//Agility
+    self.plateMounting.subscribe(function () {
+        updateEvaluation('plateMounting', self.stabilityValues, self.stabilityMult(), self.plateMounting(), 'Standard'); 		//Stability
+        updateEvaluation('plateMounting', self.accelerationValues, self.accelerationMult(), self.plateMounting(), 'Standard'); //Acceleration
+        updateEvaluation('plateMounting', self.agilityValues, self.agilityMult(), self.plateMounting(), 'Short Forward'); 		//Agility
     });
 
-    self.plateCushionHardness.subscribe(function (newValue) {
-        updateEvaluation('plateCushionHardness', Vm.skateAttributesVm.stabilityValues, convertToPoints(newValue, 78, 103, self.stabilityMult() * self.med()), newValue); 	//Stability
-        updateEvaluation('plateCushionHardness', Vm.skateAttributesVm.agilityValues, convertToPoints(newValue, 103, 78, self.agilityMult() * self.med()), newValue); 		//Agility
+    self.plateCushionHardness.subscribe(function () {
+        var max = 103;
+        var min = 78;
+        updateEvaluation('plateCushionHardness', self.stabilityValues, convertToPoints(self.plateCushionHardness(), min, max, self.stabilityMult()), self.plateCushionHardness()); 	//Stability
+        updateEvaluation('plateCushionHardness', self.agilityValues, convertToPoints(self.plateCushionHardness(), max, min, self.agilityMult()), self.plateCushionHardness()); 		//Agility
     });
 
-    self.wheelDiameter.subscribe(function (newValue) {
-        updateEvaluation('wheelDiameter', Vm.skateAttributesVm.stabilityValues, convertToPoints(newValue, 70, 35, self.stabilityMult() * self.med()), newValue); 		    //Stability
-        updateEvaluation('wheelDiameter', Vm.skateAttributesVm.speedValues, convertToPoints(newValue, 35, 70, self.speedMult() * self.med()), newValue); 				    //Speed
-        updateEvaluation('wheelDiameter', Vm.skateAttributesVm.accelerationValues, convertToPoints(newValue, 70, 35, self.accelerationMult() * self.med()), newValue);    //Acceleration
+    self.wheelDiameter.subscribe(function () {
+        var max = 70;
+        var min = 35;
+        updateEvaluation('wheelDiameter', self.stabilityValues, convertToPoints(self.wheelDiameter(), max, min, self.stabilityMult()), self.wheelDiameter()); 		    //Stability
+        updateEvaluation('wheelDiameter', self.speedValues, convertToPoints(self.wheelDiameter(), min, max, self.speedMult()), self.wheelDiameter()); 				    //Speed
+        updateEvaluation('wheelDiameter', self.accelerationValues, convertToPoints(self.wheelDiameter(), max, min, self.accelerationMult()), self.wheelDiameter());    //Acceleration
     });
 
-    self.wheelWidth.subscribe(function (newValue) {
-        updateEvaluation('wheelWidth', Vm.skateAttributesVm.agilityValues, convertToPoints(newValue, 44, 31, self.agilityMult() * self.minor()), newValue); 		//Agility
-        updateEvaluation('wheelWidth', Vm.skateAttributesVm.stabilityValues, convertToPoints(newValue, 31, 44, self.stabilityMult() * self.minor()), newValue); 	//Stability
-        updateEvaluation('wheelWidth', Vm.skateAttributesVm.speedValues, convertToPoints(newValue, 44, 31, self.speedMult() * self.minor()), newValue); 			//Speed
+    self.wheelWidth.subscribe(function () {
+        var max = 44;
+        var min = 31;
+        updateEvaluation('wheelWidth', self.agilityValues, convertToPoints(self.wheelWidth(), max, min, self.agilityMult()), self.wheelWidth()); 		//Agility
+        updateEvaluation('wheelWidth', self.stabilityValues, convertToPoints(self.wheelWidth(), min, max, self.stabilityMult()), self.wheelWidth()); 	//Stability
+        updateEvaluation('wheelWidth', self.speedValues, convertToPoints(self.wheelWidth(), max, min, self.speedMult()), self.wheelWidth()); 			//Speed
     });
 
-    self.wheelDurometer.subscribe(function (newValue) {
-        updateEvaluation('wheelDurometer', Vm.skateAttributesVm.stabilityValues, convertToPoints(newValue, 103, 78, self.stabilityMult() * self.major()), newValue); 	//Stability
-        updateEvaluation('wheelDurometer', Vm.skateAttributesVm.speedValues, convertToPoints(newValue, 78, 103, self.speedMult() * self.major()), newValue); 			//Speed
+    self.wheelDurometer.subscribe(function () {
+        var max = 103;
+        var min = 78;
+        updateEvaluation('wheelDurometer', self.stabilityValues, convertToPoints(self.wheelDurometer(), max, min, self.stabilityMult()), self.wheelDurometer()); 	//Stability
+        updateEvaluation('wheelDurometer', self.speedValues, convertToPoints(self.wheelDurometer(), min, max, self.speedMult()), self.wheelDurometer()); 			//Speed
     });
-}
-
-//root VM
-function Vm() {
-    var self = this;
-
-    self.skateAttributesVm = new skateAttributesVm();
-    self.skateBuilderVm = new skateBuilderVm();
 };
 
 var Vm;
@@ -148,27 +216,52 @@ $('document').ready(function () {
     Vm = new Vm();
 
     //Attach the sliders
-    $('#skaterWeight').slider({formatter: function (value) { return weightEnum[value];}});
+    $('#skaterWeight').slider({ formatter: function (value) { return weightEnum[value]; } });
     $('#kingpin').slider({ formatter: function (value) { return value + '°'; } });
     $('#cushion-hardness').slider({ formatter: function (value) { return value + 'A'; } });
     $('#wheelDiameter').slider({ formatter: function (value) { return value + 'mm'; } });
     $('#wheelWidth').slider({ formatter: function (value) { return value + 'mm'; } });
     $('#wheelDurometer').slider({ formatter: function (value) { return value + 'A'; } });
 
-    //Set the initial vales for the sliders
-    Vm.skateBuilderVm.plateKingPinAngle.valueHasMutated();
-    Vm.skateBuilderVm.plateCushionHardness.valueHasMutated();
-    Vm.skateBuilderVm.wheelDiameter.valueHasMutated();
-    Vm.skateBuilderVm.wheelWidth.valueHasMutated();
-    Vm.skateBuilderVm.wheelDurometer.valueHasMutated();
+    //Set the initial vales for the sliders  
+    Vm.skaterWeightVal.valueHasMutated();
 
     // Activates knockout.js
     ko.applyBindings(Vm);
 });
 
-var weightEnum = ['Light', 'Light/self.med()ium', 'self.med()ium', 'self.med()ium/Heavy', 'Heavy']
-
 //Helper functions
+var weightEnum = ['Light', 'Light/medium', 'medium', 'medium/Heavy', 'Heavy']
+
+//Loops through every skate component and notifys it's subscribers that it has changed 
+function updateAllValues(Vm) {
+    var allValues = [...Vm.stabilityValues(), ...Vm.agilityValues(), ...Vm.speedValues(), ...Vm.accelerationValues()];
+    allValues = allValues.map(x => x.type);
+    allValues = allValues.filter((elem, pos, arr) => { return arr.indexOf(elem) == pos; });
+    allValues.map(item => {
+        if (Vm.hasOwnProperty(item) && ko.isObservable(Vm[item])) {
+            Vm[item].valueHasMutated();
+        }
+    });
+}
+
+function updateAllMultpliers(Vm) {
+    Vm.stabilityMult(calculateMultpliers(Vm.stabilityValues()));
+    Vm.agilityMult(calculateMultpliers(Vm.agilityValues()));
+    Vm.speedMult(calculateMultpliers(Vm.speedValues()));
+    Vm.accelerationMult(calculateMultpliers(Vm.accelerationValues()));
+};
+
+function calculateMultpliers(configValues) {
+    if (configValues && Array.isArray(configValues)) {
+        var hasImpact = configValues.filter(x => x.impact);
+        var sum = 0;
+        hasImpact.map(config => sum += config.impact);
+        return 100 / sum;
+    }
+    return 0;
+}
+
 function convertToPoints(Input, min, max, outputMax) {
     var pointsPerIncrement = 100 / (max - min);
     var percent = (Input - min) * pointsPerIncrement;
@@ -176,32 +269,17 @@ function convertToPoints(Input, min, max, outputMax) {
     return percent / outputPerIncrement;
 }
 
-function updateEvaluation(component, attribute, impact, newValue, applyOn) {
+function updateEvaluation(component, attribute, mult, newValue, applyOn) {
     //Find the skate component in the array of attributes
-    var index = attribute().findIndex(i => i.type === component);
+    var item = attribute().find(i => i.type === component);
 
     //If we found the component in the attribute array
-    if (index >= 0) {
-        attribute.splice(index, 1); //Remove this attribute from the array
-
+    if (item) {
         if (!applyOn || newValue === applyOn) { //Update this attribute with it's updated value
-            attribute.push({ type: component, value: impact });
-        } else { //This option was unset so unset it's value
-            attribute.push({ type: component });
+            item.value = mult * item.impact;
+        } else {
+            item.value = 0;
         }
+        attribute.valueHasMutated();
     }
-}
-
-function initializeValues() {
-    return [
-        { type: 'bootTop' },
-        { type: 'bootHeel' },
-        { type: 'plateKingPinAngle' },
-        { type: 'plateMounting' },
-        { type: 'plateCushionHardness' },
-        { type: 'wheelDiameter' },
-        { type: 'wheelWidth' },
-        { type: 'wheelDurometer' },
-        { type: 'wheelBearings' }
-    ];
 }
