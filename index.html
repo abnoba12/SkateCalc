@@ -31,7 +31,7 @@
                     Good skates don't make a good skater, but good equipment sure does help you get there.
                 </p>
                 <p>
-                    *Assumptions: Wood indoor rink, medium floor stickyness.
+                    *Assumptions: Wood indoor rink, medium floor stickyness, low to average skate skill.
                 </p>
             </div>
         </div>
@@ -60,8 +60,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.stability()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -71,8 +71,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.agility()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -82,8 +82,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.speed()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -93,8 +93,8 @@
             </div>
             <div class="col-sm-10">
                 <div class="progress">
-                    <div data-bind="style: { width: Vm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div data-bind="style: { width: Vm.acceleration()+'%' }" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                 <p>
                     <strong>Skater Weight:</strong>
                     <span data-bind="text: Vm.skaterWeight()"></span>
-                    <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#skaterWeightModal"></i>
                 </p>
                 <span>Light </span>
                 <input id="skaterWeight" type="text" data-bind="textInput: Vm.skaterWeightVal" data-slider-value="0" data-slider-ticks="[0, 1, 2, 3, 4]"
@@ -153,22 +153,27 @@
         <div class="row">
             <div class=" col-sm-3">
                 <p>
-                    <strong>King Pin Angle:</strong>
-                    <span data-bind="text: Vm.plateKingPinAngle()+'&#176;'"></span>
-                    <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
+                    <input type="checkbox" data-bind="checked: Vm.isProgressiveLateralMovement" />
+                    <label>Progressive Lateral Movement (Arius)</label>
                 </p>
-                <span>10&#176; </span>
-                <input id="kingpin" data-bind="textInput: Vm.plateKingPinAngle" data-slider-id='kingpinSlider' type="text"
-                    data-slider-min="10" data-slider-max="45" data-slider-step="1" />
-                <span> 45&#176;</span>
+                <div data-bind="if: !Vm.isProgressiveLateralMovement()">
+                    <p>
+                        <strong>King Pin Angle:</strong>
+                        <span data-bind="text: Vm.plateKingPinAngle()+'&#176;'"></span>
+                        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateKingPinModal"></i>
+                    </p>
+                    <span>10&#176; </span>
+                    <input id="kingpin" data-bind="textInput: Vm.plateKingPinAngle" data-slider-id='kingpinSlider' type="text" data-slider-min="10"
+                        data-slider-max="45" data-slider-step="1" />
+                    <span> 45&#176;</span>
+                </div>
             </div>
             <div class=" col-sm-2">
                 <strong>Mounting:</strong>
                 <span data-bind="text: Vm.plateMounting"></span>
                 <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateMountingModal"></i>
                 <div>
-                    <input type="radio" name="plateMountingGroup" value="Short Forward" data-bind="checked: Vm.plateMounting"
-                    /> Short Forward
+                    <input type="radio" name="plateMountingGroup" value="Short Forward" data-bind="checked: Vm.plateMounting" /> Short Forward
                 </div>
                 <div>
                     <input type="radio" name="plateMountingGroup" value="Standard" data-bind="checked: Vm.plateMounting" /> Standard
@@ -181,8 +186,8 @@
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#plateCushionHardnessModal"></i>
                 </p>
                 <span>Soft (78A) </span>
-                <input id="cushion-hardness" data-bind="textInput: Vm.plateCushionHardness" data-slider-id='cushion-hardnessSlider'
-                    type="text" data-slider-min="78" data-slider-max="103" data-slider-step="1" />
+                <input id="cushion-hardness" data-bind="textInput: Vm.plateCushionHardness" data-slider-id='cushion-hardnessSlider' type="text"
+                    data-slider-min="78" data-slider-max="103" data-slider-step="1" />
                 <span> Hard(103A)</span>
             </div>
         </div>
@@ -201,8 +206,8 @@
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDiameterModal"></i>
                 </p>
                 <span>45mm </span>
-                <input id="wheelDiameter" data-bind="textInput: Vm.wheelDiameter" data-slider-id='wheelDiameterSlider' type="text"
-                    data-slider-min="35" data-slider-max="70" data-slider-step="1" />
+                <input id="wheelDiameter" data-bind="textInput: Vm.wheelDiameter" data-slider-id='wheelDiameterSlider' type="text" data-slider-min="35"
+                    data-slider-max="70" data-slider-step="1" />
                 <span> 70mm</span>
             </div>
             <div class=" col-sm-3">
@@ -212,8 +217,8 @@
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelWidthModal"></i>
                 </p>
                 <span>31mm </span>
-                <input id="wheelWidth" data-bind="textInput: Vm.wheelWidth" data-slider-id='wheelWidthSlider' type="text"
-                    data-slider-min="31" data-slider-max="44" data-slider-step="1" />
+                <input id="wheelWidth" data-bind="textInput: Vm.wheelWidth" data-slider-id='wheelWidthSlider' type="text" data-slider-min="31"
+                    data-slider-max="44" data-slider-step="1" />
                 <span> 44mm</span>
             </div>
             <div class=" col-sm-3">
@@ -223,8 +228,8 @@
                     <i class="fa fa-question-circle" aria-hidden="true" data-toggle="modal" data-target="#wheelDurometerModal"></i>
                 </p>
                 <span>Soft (78A) </span>
-                <input id="wheelDurometer" data-bind="textInput: Vm.wheelDurometer" data-slider-id='wheelDurometerSlider'
-                    type="text" data-slider-min="78" data-slider-max="103" data-slider-step="1" />
+                <input id="wheelDurometer" data-bind="textInput: Vm.wheelDurometer" data-slider-id='wheelDurometerSlider' type="text" data-slider-min="78"
+                    data-slider-max="103" data-slider-step="1" />
                 <span> Hard(103A)</span>
             </div>
         </div>
@@ -236,7 +241,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Boot Top</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Boot Top</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -267,7 +272,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Boot Heel</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Boot Heel</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -306,12 +311,45 @@
             </div>
         </div>
     </div>
+    <!-- Skater Weight -->
+    <div class="modal fade" id="skaterWeightModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Skater Weight</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Impact:</strong>
+                        <ul>
+                            <li>Agility</li>
+                            <li>Speed</li>
+                            <li>Stability</li>
+                        </ul>
+                    </p>
+                    <hr />
+                    <p>
+                        A skater's weight affects the components in a skate that flex and compress. These are primarily the cushions and the wheels.
+                        Basically anything measured with a durometer. The heavier the skater the more the cushions and wheels
+                        will compress and easily flex.
+                    </p>
+                    <p>
+                        A heavier skater will require harder cushions to get the same effect of a lighter skater on softer cushions. This also means
+                        a heavier skater will sink into the floor more with softer wheels.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Plate Kingpin Angle -->
     <div class="modal fade" id="plateKingPinModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Plate King Pin Angle</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Plate King Pin Angle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -347,7 +385,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Plate Mounting</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Plate Mounting</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -385,7 +423,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Plate Cushion Hardness</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Plate Cushion Hardness</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -418,7 +456,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Wheel Diameter</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Wheel Diameter</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -459,7 +497,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Wheel Width</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Wheel Width</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -494,7 +532,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Wheel Durometer</h5>
+                    <h3 class="modal-title" id="exampleModalLabel">Wheel Durometer</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

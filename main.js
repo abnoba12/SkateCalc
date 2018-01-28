@@ -102,6 +102,7 @@ function Vm() {
     self.bootHeel = ko.observable();
     self.skaterWeightVal = ko.observable(0);
     self.skaterWeight = ko.pureComputed(function () { return weightEnum[self.skaterWeightVal()]; }); //Converts number into text
+    self.isProgressiveLateralMovement = ko.observable(false);
     self.plateKingPinAngle = ko.observable(10);
     self.plateMounting = ko.observable();
     self.plateCushionHardness = ko.observable(78);
@@ -137,26 +138,26 @@ function Vm() {
         switch (self.skaterWeightVal()) {
             case '0':
                 agilityCushion.impact = agilityCushion.origImpact;
-                stabilityCushion.impact = stabilityCushion.origImpact + 4;
-                speedWheelDur.impact = speedWheelDur.origImpact + 4;
+                stabilityCushion.impact = stabilityCushion.origImpact * 2;
+                speedWheelDur.impact = speedWheelDur.origImpact * 2;
                 break;
             case '1':
-                agilityCushion.impact = agilityCushion.origImpact + 1;
-                stabilityCushion.impact = stabilityCushion.origImpact + 3;                
-                speedWheelDur.impact = speedWheelDur.origImpact + 3;
+                agilityCushion.impact = agilityCushion.origImpact * 1.25;
+                stabilityCushion.impact = stabilityCushion.origImpact * 1.75;                
+                speedWheelDur.impact = speedWheelDur.origImpact * 1.75;
                 break;
             case '2':
-                agilityCushion.impact = agilityCushion.origImpact + 2;
-                stabilityCushion.impact = stabilityCushion.origImpact + 2;
-                speedWheelDur.impact = speedWheelDur.origImpact + 2;
+                agilityCushion.impact = agilityCushion.origImpact * 1.5;
+                stabilityCushion.impact = stabilityCushion.origImpact * 1.5;
+                speedWheelDur.impact = speedWheelDur.origImpact * 1.5;
                 break;
             case '3':
-                agilityCushion.impact = agilityCushion.origImpact + 3;
-                stabilityCushion.impact = stabilityCushion.origImpact + 1;
-                speedWheelDur.impact = speedWheelDur.origImpact + 1;
+                agilityCushion.impact = agilityCushion.origImpact * 1.75;
+                stabilityCushion.impact = stabilityCushion.origImpact * 1.25;
+                speedWheelDur.impact = speedWheelDur.origImpact * 1.25;
                 break;
             case '4':
-                agilityCushion.impact = agilityCushion.origImpact + 4;
+                agilityCushion.impact = agilityCushion.origImpact * 2;
                 stabilityCushion.impact = stabilityCushion.origImpact;
                 speedWheelDur.impact = speedWheelDur.origImpact;
                 break;
@@ -164,6 +165,16 @@ function Vm() {
 
         updateAllMultpliers(self);
         updateAllValues(self);
+    });
+
+    self.isProgressiveLateralMovement.subscribe(function () {
+        if(self.isProgressiveLateralMovement()){
+            self.plateKingPinAngle('45');
+            self.kingpinSlider.slider('setValue', 45);
+        }else{
+            self.plateKingPinAngle('10');
+            self.kingpinSlider.slider('setValue', 10);            
+        }
     });
 
     self.plateKingPinAngle.subscribe(function () {
@@ -216,12 +227,12 @@ $('document').ready(function () {
     Vm = new Vm();
 
     //Attach the sliders
-    $('#skaterWeight').slider({ formatter: function (value) { return weightEnum[value]; } });
-    $('#kingpin').slider({ formatter: function (value) { return value + '°'; } });
-    $('#cushion-hardness').slider({ formatter: function (value) { return value + 'A'; } });
-    $('#wheelDiameter').slider({ formatter: function (value) { return value + 'mm'; } });
-    $('#wheelWidth').slider({ formatter: function (value) { return value + 'mm'; } });
-    $('#wheelDurometer').slider({ formatter: function (value) { return value + 'A'; } });
+    Vm.skaterWeightSlider = $('#skaterWeight').slider({ formatter: function (value) { return weightEnum[value]; } });
+    Vm.kingpinSlider = $('#kingpin').slider({ formatter: function (value) { return value + '°'; } });
+    Vm.cushionHardnessSlider = $('#cushion-hardness').slider({ formatter: function (value) { return value + 'A'; } });
+    Vm.wheelDiameterSlider = $('#wheelDiameter').slider({ formatter: function (value) { return value + 'mm'; } });
+    Vm.wheelWidthSlider = $('#wheelWidth').slider({ formatter: function (value) { return value + 'mm'; } });
+    Vm.wheelDurometerSlider = $('#wheelDurometer').slider({ formatter: function (value) { return value + 'A'; } });
 
     //Set the initial vales for the sliders  
     Vm.skaterWeightVal.valueHasMutated();
