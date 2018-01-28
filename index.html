@@ -156,7 +156,7 @@
                     <input type="checkbox" data-bind="checked: Vm.isProgressiveLateralMovement" />
                     <label>Progressive Lateral Movement (Arius)</label>
                 </p>
-                <div data-bind="if: !Vm.isProgressiveLateralMovement()">
+                <div data-bind="css: {hide: Vm.isProgressiveLateralMovement()}">
                     <p>
                         <strong>King Pin Angle:</strong>
                         <span data-bind="text: Vm.plateKingPinAngle()+'&#176;'"></span>
